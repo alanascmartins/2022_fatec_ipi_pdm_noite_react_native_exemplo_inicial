@@ -1,11 +1,23 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, Text, View } from 'react-native';
+import { useState } from 'react';
 
 export default function App() {
+  //const vetor = useState('esse valor com vetor')//valor padrão que vai existir na variável de estado
+  //const [texto,setTexto] = useState('esse valor com vetor desestruturado') //desestruturando um vetor. ex: vetor = [1,2] -> const [primeiro, segundo] = vetor
+  const[contador, setContador] = useState(0)
+
+  const incrementar = () => {
+    setContador(contador + 1)
+
+  }
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <Text>{contador}</Text>
+      <Button
+       title='Incrementar'
+       onPress={incrementar} 
+       />
     </View>
   );
 }
