@@ -1,27 +1,32 @@
-import { StatusBar } from 'expo-status-bar';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, TextInput, View } from 'react-native';
+
 import { useState } from 'react';
 
 export default function App() {
-  //const vetor = useState('esse valor com vetor')//valor padrão que vai existir na variável de estado
-  //const [texto,setTexto] = useState('esse valor com vetor desestruturado') //desestruturando um vetor. ex: vetor = [1,2] -> const [primeiro, segundo] = vetor
-  const[contador, setContador] = useState(0)
-
-  const incrementar = () => {
-    setContador(contador + 1)
-
+  const[lembrete, setLembrete] = useState('')
+  const capturarTexto = (LembreteDigitado) => {setLembrete(LembreteDigitado)} // para deixar tudo maiúsculo lembreteDigitado.toUpperCase()
+  const adicionarLembrete = () => {
+    console.log("Adicionando...", lembrete)
+    setLembrete('')
   }
+  
   return (
-    <View style={styles.container}>
-      <Text>{contador}</Text>
-      <Button
-       title='Incrementar'
-       onPress={incrementar} 
-       />
+    <View style={{padding: 40}}>
+      <View>
+        <TextInput 
+          style={{borderBottomColor: '#888', borderBottomWidth: 2, padding: 12, marginBottom: 4}}
+          placeholder="Lembrar..."
+          onChangeText={capturarTexto}
+          value={lembrete}
+        />
+        <Button
+          title="OK"
+          onPress = {adicionarLembrete}
+        />
+      </View>      
     </View>
   );
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
